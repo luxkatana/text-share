@@ -3,7 +3,7 @@
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <strings.h>
-#include <netinet/in.h>
+#include <string.h>
 #include <stdlib.h>
 int main()
 {
@@ -49,7 +49,10 @@ int main()
                 break;
             }
             else
+            {
+                buffer[strlen(buffer)] = '\0';
                 printf("message: %s\n", buffer);
+            }
             if(send(other_descriptor_bounce, buffer, 255, 0) < 0)
             {
                 fprintf(stderr, "Could not bounce back\n");
